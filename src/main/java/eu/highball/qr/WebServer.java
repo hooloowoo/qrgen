@@ -29,7 +29,6 @@ public class WebServer {
     }
 
     static class FileHandler implements HttpHandler {
-
         private Map<String, String> getParams(String query) {
             Map<String, String> result = new HashMap<>();
             String[] q = new String[0];

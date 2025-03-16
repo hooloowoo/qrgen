@@ -17,14 +17,6 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 public class QrGenerator {
 
-    private BitMatrix generate(String data,int width,int height) throws WriterException {
-        return new MultiFormatWriter().encode(data, BarcodeFormat.QR_CODE, width, height);
-    }
-
-    public BufferedImage png(String data,int width,int height) throws WriterException, IOException {
-        BitMatrix matrix = generate(data, width, height);
-        return MatrixToImageWriter.toBufferedImage(matrix);
-    }
 
     public String svg(String payload,int size) throws WriterException {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
