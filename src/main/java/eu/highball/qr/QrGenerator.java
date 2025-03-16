@@ -26,12 +26,12 @@ public class QrGenerator {
         return MatrixToImageWriter.toBufferedImage(matrix);
     }
 
-    public String svg(String payload,int w,int h) throws WriterException {
+    public String svg(String payload,int size) throws WriterException {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         Map<EncodeHintType, Object> hints = new HashMap<>();
         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
         hints.put(EncodeHintType.CHARACTER_SET, StandardCharsets.UTF_8.name());
-        BitMatrix bitMatrix = qrCodeWriter.encode(payload, BarcodeFormat.QR_CODE, w, h, hints);
+        BitMatrix bitMatrix = qrCodeWriter.encode(payload, BarcodeFormat.QR_CODE, size, size, hints);
         StringBuilder sbPath = new StringBuilder();
         int width = bitMatrix.getWidth();
         int height = bitMatrix.getHeight();
@@ -44,8 +44,8 @@ public class QrGenerator {
                 }
             }
         }
-        return "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" viewBox=\"0 0 " + width + " " + height + "\">" +
-                "<path class=\"black\"  d=\"" + sbPath + "\"/></svg>";
+        return "<div style=\"width:"+ size +"px;height:"+size+"px\"><svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" viewBox=\"0 0 " + width + " " + height + "\">" +
+                "<path class=\"black\"  d=\"" + sbPath + "\"/></svg></div>";
     }
 
 
